@@ -21,7 +21,7 @@ private val DarkColorPalette = AppColors(
     info = info,
     warn = warn,
     success = green3,
-    error =red2,
+    error = red2,
     primaryBtnBg = black1,
     secondBtnBg = white1,
     hot = red,
@@ -29,7 +29,7 @@ private val DarkColorPalette = AppColors(
 )
 
 //白天主题
- private val LightColorPalette = AppColors(
+private val LightColorPalette = AppColors(
     themeUi = themeColors[0],
     background = white2,
     listItem = white,
@@ -48,7 +48,7 @@ private val DarkColorPalette = AppColors(
     hot = red,
     placeholder = white3,
 )
-var LocalHamColors = compositionLocalOf {
+var LocalAppColors = compositionLocalOf {
     LightColorPalette
 }
 
@@ -56,7 +56,7 @@ var LocalHamColors = compositionLocalOf {
 object AppTheme {
     val colors: AppColors
         @Composable
-        get() = LocalHamColors.current
+        get() = LocalAppColors.current
 
     enum class Theme {
         Light, Dark
@@ -121,14 +121,13 @@ class AppColors(
 }
 
 
-
 @Composable
 fun AppTheme(
     theme: AppTheme.Theme = AppTheme.Theme.Light,
     content: @Composable () -> Unit
 ) {
 
-    val targetColors = when(theme) {
+    val targetColors = when (theme) {
         AppTheme.Theme.Light -> {
             val index = 0
             LightColorPalette.themeUi = themeColors[index]
@@ -155,7 +154,7 @@ fun AppTheme(
     val secondBtnBg = animateColorAsState(targetColors.secondBtnBg, TweenSpec(600))
     val hot = animateColorAsState(targetColors.hot, TweenSpec(600))
     val placeholder = animateColorAsState(targetColors.placeholder, TweenSpec(600))
-    val hamColors = AppColors(
+    val appColors = AppColors(
         themeUi = themeUi.value,
         background = background.value,
         listItem = listItem.value,
@@ -176,15 +175,12 @@ fun AppTheme(
     )
 
     val systemUiCtrl = rememberSystemUiController()
-    //SideEffect用于屏蔽state，取消监听
-    //SideEffect {
-        systemUiCtrl.setStatusBarColor(hamColors.themeUi)
-        systemUiCtrl.setNavigationBarColor(hamColors.themeUi)
-        systemUiCtrl.setSystemBarsColor(hamColors.themeUi)
-    //}
+    systemUiCtrl.setStatusBarColor(appColors.themeUi)
+    systemUiCtrl.setNavigationBarColor(appColors.themeUi)
+    systemUiCtrl.setSystemBarsColor(appColors.themeUi)
 
     ProvideWindowInsets {
-        CompositionLocalProvider(LocalHamColors provides hamColors, content = content)
+        CompositionLocalProvider(LocalAppColors provides appColors, content = content)
     }
 
 }
