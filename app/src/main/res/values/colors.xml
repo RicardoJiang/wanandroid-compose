@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primary">#00BFFF</color>
+    <color name="purple_200">#BB86FC</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#018786</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="grey_cd">#cdcdcd</color>
+    <color name="grey_bf">#bfbfbf</color>
+    <color name="grey_8a">#8a8a8a</color>
+    <color name="grey_fe">#FEFEFE</color>
+    <color name="grey_fa">#FAFAFA</color>
+    <color name="grey_f8">#F8F8F8</color>
+    <color name="grey_db">#DBDBDB</color>
+    <color name="grey_e6">#e6e6e6</color>
+    <color name="black_2c">#2c2c2c</color>
+
+    <color name="navajo_white">#FFDEAD</color>
+    <color name="medium_blue">#0000CD</color>
+    <color name="hot_pink">#FF69B4</color>
+    <color name="chocolate">#8B4513</color>
+    <color name="dark_orange">#FF7F00</color>
+    <color name="orange">#FFA500</color>
+    <color name="gold">#FFD700</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="fire_red">#FF3030</color>
+    <color name="light_green">#90EE90</color>
+    <color name="sprint_green">#00FF7F</color>
+    <color name="azure">#F0FFFF</color>
+
 </resources>

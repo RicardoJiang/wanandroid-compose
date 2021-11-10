@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">wanandroid-compose</string>
+    <string name="home">首页</string>
+    <string name="category">分类</string>
+    <string name="collection">收藏</string>
+    <string name="profile">我的</string>
 </resources>
