@@ -6,26 +6,7 @@ import com.zj.wanandroid.R
 
 val Transparent = Color(0x00000000)
 
-val themeColors = arrayOf(
-    Color(MyApp.CONTEXT.resources.getColor(R.color.primary)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.purple_200)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.purple_500)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.purple_700)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.teal_700)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.navajo_white)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.medium_blue)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.hot_pink)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.chocolate)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.dark_orange)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.orange)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.gold)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.yellow)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.fire_red)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.light_green)),
-    Color(MyApp.CONTEXT.resources.getColor(R.color.sprint_green)),
-    //Color(MyApp.CONTEXT.resources.getColor(R.color.azure)),
-)
-
+val themeColor = Color(MyApp.CONTEXT.resources.getColor(R.color.primary))
 val splashText = Color(0x25000000)
 val white = Color(0xFFFFFFFF)
 val white1 = Color(0xFFF7F7F7)
