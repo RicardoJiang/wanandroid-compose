@@ -14,7 +14,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.zj.wanandroid.ui.page.common.BottomNavRoute
-import com.zj.wanandroid.ui.theme.AppTheme
+import com.zj.wanandroid.theme.AppTheme
 
 @Composable
 fun BottomNavBarView(navCtrl: NavHostController) {

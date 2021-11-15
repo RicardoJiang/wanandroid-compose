@@ -1,4 +1,4 @@
-package com.zj.wanandroid.ui.theme
+package com.zj.wanandroid.theme
 
 import androidx.compose.ui.graphics.Color
 import com.zj.wanandroid.MyApp

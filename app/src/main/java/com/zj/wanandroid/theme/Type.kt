@@ -1,4 +1,4 @@
-package com.zj.wanandroid.ui.theme
+package com.zj.wanandroid.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

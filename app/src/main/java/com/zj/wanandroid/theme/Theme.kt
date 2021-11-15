@@ -1,4 +1,4 @@
-package com.zj.wanandroid.ui.theme
+package com.zj.wanandroid.theme
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.TweenSpec
