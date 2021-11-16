@@ -3,10 +3,7 @@ package com.zj.wanandroid.ui.widgets
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -31,17 +28,16 @@ fun TextTabBar(
     contentColor: Color = Color.White,
     onTabSelected: ((index: Int) -> Unit)? = null
 ) {
-    Row(
+    Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(TabBarHeight)
+            .height(54.dp)
             .background(bgColor)
             .horizontalScroll(state = rememberScrollState())
     ) {
         Row(
             modifier = Modifier
-                .weight(1f)
-                .align(Alignment.CenterVertically)
+                .align(Alignment.Center)
         ) {
             tabTexts.forEachIndexed { i, tabTitle ->
                 Text(
