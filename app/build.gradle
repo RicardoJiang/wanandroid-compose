@@ -71,6 +71,17 @@ dependencies {
     implementation "com.google.accompanist:accompanist-coil:0.15.0"
     //系统ui控制器
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion"
+    //glide
+    implementation "com.google.accompanist:accompanist-glide:0.15.0"
+    //viewPager
+    implementation "com.google.accompanist:accompanist-pager:$accompanistVersion"
+    implementation "com.google.accompanist:accompanist-pager-indicators:$accompanistVersion"
+    //下拉刷新
+    implementation "com.google.accompanist:accompanist-swiperefresh:$accompanistVersion"
+    //流式布局
+    implementation "com.google.accompanist:accompanist-flowlayout:$accompanistVersion"
+    //placeholder
+    implementation "com.google.accompanist:accompanist-placeholder-material:$accompanistVersion"
 
     //hilt inject framework
     implementation "com.google.dagger:hilt-android:$hiltVersion"

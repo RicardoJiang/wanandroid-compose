@@ -25,7 +25,7 @@ import com.zj.wanandroid.theme.TabBarHeight
 @Composable
 fun TextTabBar(
     index: Int,
-    tabTexts: MutableList<TabTitle>,
+    tabTexts: List<TabTitle>,
     modifier: Modifier = Modifier,
     bgColor: Color = AppTheme.colors.themeUi,
     contentColor: Color = Color.White,

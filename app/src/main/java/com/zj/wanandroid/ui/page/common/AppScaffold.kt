@@ -14,12 +14,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.zj.wanandroid.ui.page.main.category.CategoryPage
 import com.zj.wanandroid.ui.page.main.collect.CollectPage
 import com.zj.wanandroid.ui.page.main.home.HomePage
 import com.zj.wanandroid.ui.page.main.profile.ProfilePage
 import com.zj.wanandroid.ui.widgets.BottomNavBarView
 
+@ExperimentalPagerApi
 @Composable
 fun AppScaffold() {
     val navCtrl = rememberNavController()
