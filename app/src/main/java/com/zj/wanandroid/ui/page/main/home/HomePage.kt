@@ -12,6 +12,7 @@ import com.google.accompanist.pager.rememberPagerState
 import com.zj.wanandroid.ui.page.main.home.question.QuestionPage
 import com.zj.wanandroid.ui.page.main.home.recommend.RecommendPage
 import com.zj.wanandroid.ui.page.main.home.square.SquarePage
+import com.zj.wanandroid.ui.widgets.HomeSearchBar
 import com.zj.wanandroid.ui.widgets.TextTabBar
 import kotlinx.coroutines.launch
 
@@ -38,6 +39,12 @@ fun HomePage(
                 scopeState.launch {
                     pagerState.scrollToPage(index)
                 }
+            }
+        )
+
+        HomeSearchBar(
+            onSearchClick = {
+                //RouteUtils.navTo(navCtrl, RouteName.ARTICLE_SEARCH + "/111")
             }
         )
 
