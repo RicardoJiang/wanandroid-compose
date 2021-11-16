@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id "kotlin-kapt"
+    id "dagger.hilt.android.plugin"
 }
 
 android {
@@ -69,4 +71,11 @@ dependencies {
     implementation "com.google.accompanist:accompanist-coil:0.15.0"
     //系统ui控制器
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion"
+
+    //hilt inject framework
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    kapt "com.google.dagger:hilt-compiler:$hiltVersion"
+    implementation "androidx.hilt:hilt-navigation-compose:$hiltComposeVersion"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltComposeVersion"
+    kapt "androidx.hilt:hilt-compiler:$hiltCompilerVersion"
 }
