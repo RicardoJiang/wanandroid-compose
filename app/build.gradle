@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id "kotlin-kapt"
+    id "kotlin-parcelize"
     id "dagger.hilt.android.plugin"
 }
 
@@ -89,4 +90,14 @@ dependencies {
     implementation "androidx.hilt:hilt-navigation-compose:$hiltComposeVersion"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltComposeVersion"
     kapt "androidx.hilt:hilt-compiler:$hiltCompilerVersion"
+
+    //http request
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.google.code.gson:gson:$gsonVersion"
+
+    //数据保存，用于cookie持久化
+    implementation "androidx.datastore:datastore-preferences:$datastoreVersion"
+    implementation "androidx.datastore:datastore-core:$datastoreVersion"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.31"
 }

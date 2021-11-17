@@ -3,6 +3,7 @@ package com.zj.wanandroid
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.zj.wanandroid.data.store.DataStoreUtils
 import dagger.hilt.android.HiltAndroidApp
 
 /**
@@ -23,5 +24,6 @@ class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         CONTEXT = this
+        DataStoreUtils.init(this)
     }
 }

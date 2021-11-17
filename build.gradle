@@ -7,6 +7,9 @@ buildscript {
         hiltVersion = "2.38.1"
         hiltCompilerVersion = "1.0.0"
         hiltComposeVersion = "1.0.0-alpha03"
+        retrofitVersion = "2.9.0"
+        gsonVersion = "2.8.6"
+        datastoreVersion = "1.0.0-rc02"
     }
     repositories {
         google()
