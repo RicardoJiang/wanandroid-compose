@@ -10,11 +10,16 @@ import kotlinx.coroutines.flow.Flow
 
 fun <T : Any> ViewModel.simplePager(
     config: AppPagingConfig = AppPagingConfig(),
-    callAction: suspend (page: Int) -> HttpResult<BasicBean<ListWrapper<T>>>
+    callAction: suspend (page: Int) -> BasicBean<ListWrapper<T>>
 ): Flow<PagingData<T>> {
     return pager(config, 0) {
         val page = it.key ?: 0
-        when (val response = callAction.invoke(page)) {
+        val response = try {
+            HttpResult.Success(callAction.invoke(page))
+        } catch (e: Exception) {
+            HttpResult.Error(e)
+        }
+        when (response) {
             is HttpResult.Success -> {
                 val data = response.result.data
                 val hasNotNext = (data!!.datas.size < it.loadSize) && (data.over)

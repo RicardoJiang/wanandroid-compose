@@ -3,7 +3,6 @@ package com.zj.wanandroid.ui.page.main.home.square
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zj.wanandroid.data.http.HttpResult
 import com.zj.wanandroid.data.http.HttpService
 import com.zj.wanandroid.utils.paging.simplePager
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,14 +16,11 @@ import javax.inject.Inject
 class SquareViewModel @Inject constructor(
     private var service: HttpService,
 ) : ViewModel() {
+    private val pager by lazy {
+        simplePager { service.getSquareData(it) }
+    }
+
     init {
-        val simplePager = simplePager {
-            try {
-                HttpResult.Success(service.getSquareData(1))
-            } catch (e: Exception) {
-                HttpResult.Error(e)
-            }
-        }
         fetchData()
     }
 
