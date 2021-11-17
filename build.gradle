@@ -10,6 +10,8 @@ buildscript {
         retrofitVersion = "2.9.0"
         gsonVersion = "2.8.6"
         datastoreVersion = "1.0.0-rc02"
+        pagingVersion = "3.1.0-rc01"
+        pagingComposeVersion = "1.0.0-alpha14"
     }
     repositories {
         google()

@@ -100,4 +100,9 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:$datastoreVersion"
     implementation "androidx.datastore:datastore-core:$datastoreVersion"
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.31"
+
+    //paging分页库
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
+    testImplementation "androidx.paging:paging-common:$pagingVersion"
+    implementation "androidx.paging:paging-compose:$pagingComposeVersion"
 }
