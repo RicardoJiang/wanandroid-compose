@@ -105,4 +105,7 @@ dependencies {
     implementation "androidx.paging:paging-runtime:$pagingVersion"
     testImplementation "androidx.paging:paging-common:$pagingVersion"
     implementation "androidx.paging:paging-compose:$pagingComposeVersion"
+
+    //约束布局
+    implementation "androidx.constraintlayout:constraintlayout-compose:$constraintComposeVersion"
 }
