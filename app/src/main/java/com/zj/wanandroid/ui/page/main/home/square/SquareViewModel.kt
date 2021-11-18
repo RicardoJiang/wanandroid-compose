@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zj.wanandroid.data.http.HttpService
-import com.zj.wanandroid.utils.paging.simplePager
+import com.zj.wanandroid.common.paging.simplePager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow

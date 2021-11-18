@@ -1,4 +1,4 @@
-package com.zj.wanandroid.di
+package com.zj.wanandroid.common.di
 
 import com.zj.wanandroid.data.http.ApiCall
 import com.zj.wanandroid.data.http.HttpService

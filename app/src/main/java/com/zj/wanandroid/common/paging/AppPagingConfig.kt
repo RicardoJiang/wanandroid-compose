@@ -1,4 +1,4 @@
-package com.zj.wanandroid.utils.paging
+package com.zj.wanandroid.common.paging
 
 import androidx.paging.PagingConfig
 
