@@ -27,9 +27,7 @@ fun HomePage(
     val scopeState = rememberCoroutineScope()
     Column {
         val pagerState = rememberPagerState(
-            pageCount = titles.size,
-            initialPage = 0,
-            initialOffscreenLimit = titles.size
+            initialPage = 0
         )
 
         TextTabBar(
@@ -48,7 +46,7 @@ fun HomePage(
             }
         )
 
-        HorizontalPager(state = pagerState, dragEnabled = false) { page ->
+        HorizontalPager(count = titles.size,state = pagerState) { page ->
             when (page) {
                 0 -> SquarePage(navCtrl, scaffoldState)
                 1 -> RecommendPage(navCtrl, scaffoldState)

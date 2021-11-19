@@ -75,7 +75,7 @@ dependencies {
     //glide
     implementation "com.google.accompanist:accompanist-glide:0.15.0"
     //viewPager
-    implementation "com.google.accompanist:accompanist-pager:$accompanistVersion"
+    implementation "com.google.accompanist:accompanist-pager:0.20.2"
     implementation "com.google.accompanist:accompanist-pager-indicators:$accompanistVersion"
     //下拉刷新
     implementation "com.google.accompanist:accompanist-swiperefresh:$accompanistVersion"
