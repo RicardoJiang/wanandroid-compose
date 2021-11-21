@@ -151,6 +151,7 @@ fun TextTabBar(
     index: Int,
     tabTexts: List<TabTitle>,
     modifier: Modifier = Modifier,
+    contentAlign: Alignment = Alignment.Center,
     bgColor: Color = AppTheme.colors.themeUi,
     contentColor: Color = Color.White,
     onTabSelected: ((index: Int) -> Unit)? = null
@@ -164,7 +165,7 @@ fun TextTabBar(
     ) {
         Row(
             modifier = Modifier
-                .align(Alignment.Center)
+                .align(contentAlign)
         ) {
             tabTexts.forEachIndexed { i, tabTitle ->
                 Text(

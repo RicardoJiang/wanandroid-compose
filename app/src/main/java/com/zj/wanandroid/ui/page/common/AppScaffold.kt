@@ -63,7 +63,7 @@ fun AppScaffold() {
 
                 //分类
                 composable(route = RouteName.CATEGORY) {
-                    CategoryPage(navCtrl, scaffoldState)
+                    CategoryPage(navCtrl){}
                 }
 
                 //收藏
