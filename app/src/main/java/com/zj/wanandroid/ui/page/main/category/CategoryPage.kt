@@ -1,5 +1,6 @@
 package com.zj.wanandroid.ui.page.main.category
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,13 +23,13 @@ import com.zj.wanandroid.ui.widgets.TextTabBar
 
 import kotlinx.coroutines.launch
 
+@ExperimentalFoundationApi
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun CategoryPage(
     navCtrl: NavHostController,
     categoryIndex: Int = 0,
-    viewModel: CategoryViewModel = hiltViewModel(),
-    onPageSelected: (position: Int) -> Unit,
+    viewModel: CategoryViewModel = hiltViewModel()
 ) {
 
     val titles = viewModel.titles
@@ -54,7 +55,6 @@ fun CategoryPage(
             }
 
             HorizontalPager(count = titles.size,state = pagerState) { page ->
-                onPageSelected(pagerState.currentPage)
                 when (page) {
                     0 -> StructurePage(navCtrl)
                     1 -> NaviPage(navCtrl)

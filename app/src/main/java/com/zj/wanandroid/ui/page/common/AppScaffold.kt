@@ -1,5 +1,6 @@
 package com.zj.wanandroid.ui.page.common
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -27,6 +28,7 @@ import com.zj.wanandroid.ui.widgets.BottomNavBarView
 import com.zj.wanandroid.utils.RouteUtils
 import com.zj.wanandroid.utils.fromJson
 
+@ExperimentalFoundationApi
 @ExperimentalPagerApi
 @Composable
 fun AppScaffold() {
@@ -63,7 +65,7 @@ fun AppScaffold() {
 
                 //分类
                 composable(route = RouteName.CATEGORY) {
-                    CategoryPage(navCtrl){}
+                    CategoryPage(navCtrl)
                 }
 
                 //收藏
