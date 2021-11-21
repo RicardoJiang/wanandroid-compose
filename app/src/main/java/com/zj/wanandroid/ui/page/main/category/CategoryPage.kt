@@ -1,6 +1,7 @@
 package com.zj.wanandroid.ui.page.main.category
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +16,7 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
+import com.zj.wanandroid.theme.AppTheme
 import com.zj.wanandroid.theme.BottomNavBarHeight
 import com.zj.wanandroid.ui.page.main.category.navi.NaviPage
 import com.zj.wanandroid.ui.page.main.category.pubaccount.PublicAccountPage
@@ -54,7 +56,11 @@ fun CategoryPage(
                 )
             }
 
-            HorizontalPager(count = titles.size,state = pagerState) { page ->
+            HorizontalPager(
+                count = titles.size,
+                state = pagerState,
+                modifier = Modifier.background(AppTheme.colors.background)
+            ) { page ->
                 when (page) {
                     0 -> StructurePage(navCtrl)
                     1 -> NaviPage(navCtrl)
