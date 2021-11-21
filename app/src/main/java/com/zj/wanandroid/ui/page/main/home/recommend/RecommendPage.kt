@@ -1,5 +1,6 @@
 package com.zj.wanandroid.ui.page.main.home.recommend
 
+import android.util.Log
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.ScaffoldState
@@ -29,7 +30,10 @@ fun RecommendPage(
     val recommendData = viewModel.viewStates.pagingData.collectAsLazyPagingItems()
     val banners = viewModel.viewStates.imageList
     val topArticle = viewModel.viewStates.topArticles
-    RefreshList(recommendData) {
+    val isRefreshing = viewModel.viewStates.isRefreshing
+    RefreshList(recommendData, isRefreshing = isRefreshing, onRefresh = {
+        viewModel.dispatch(RecommendViewAction.Refresh)
+    }) {
         if (banners.isNotEmpty()) {
             item {
                 Banner(list = banners) { url, title ->

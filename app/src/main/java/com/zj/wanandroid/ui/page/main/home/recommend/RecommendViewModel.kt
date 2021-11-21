@@ -40,6 +40,7 @@ class RecommendViewModel @Inject constructor(
 
     private fun fetchData() {
         val imageListFlow = flow {
+            kotlinx.coroutines.delay(2000)
             emit(service.getBanners())
         }.map { bean ->
             val result = mutableListOf<BannerData>()
@@ -66,7 +67,7 @@ class RecommendViewModel @Inject constructor(
     }
 
     private fun refresh() {
-
+        fetchData()
     }
 
 }

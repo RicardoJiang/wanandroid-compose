@@ -28,8 +28,10 @@ import com.zj.wanandroid.theme.AppTheme
 @Composable
 fun <T : Any> RefreshList(
     lazyPagingItems: LazyPagingItems<T>,
+    isRefreshing: Boolean = false,
+    onRefresh: (() -> Unit) = {},
     listState: LazyListState = rememberLazyListState(),
-    itemContent: LazyListScope.() -> Unit
+    itemContent: LazyListScope.() -> Unit,
 ) {
     val rememberSwipeRefreshState = rememberSwipeRefreshState(isRefreshing = false)
     //错误页
@@ -40,11 +42,14 @@ fun <T : Any> RefreshList(
     }
     SwipeRefresh(
         state = rememberSwipeRefreshState,
-        onRefresh = { lazyPagingItems.refresh() }
+        onRefresh = {
+            onRefresh.invoke()
+            lazyPagingItems.refresh()
+        }
     ) {
         //刷新状态
         rememberSwipeRefreshState.isRefreshing =
-            lazyPagingItems.loadState.refresh is LoadState.Loading
+            ((lazyPagingItems.loadState.refresh is LoadState.Loading) || isRefreshing)
         //列表
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
