@@ -20,25 +20,12 @@ fun SquarePage(
     val squareData = viewModel.viewStates.pagingData.collectAsLazyPagingItems()
 
     RefreshList(squareData) {
-            itemsIndexed(squareData) { index, item ->
-                MultiStateItemView(
-                    data = item!!,
-                    onSelected = {
-                            RouteUtils.navTo(navCtrl, RouteName.WEB_VIEW, it)
-                    },
-                    onCollectClick = {
-//                            if (item.collect) {
-//                                viewModel.uncollectArticleById(it)
-//                                squareData.peek(index)?.collect = false
-//                            } else {
-//                                viewModel.collectArticleById(it)
-//                                squareData.peek(index)?.collect = true
-//                            }
-
-                    },
-                    onUserClick = { userId ->
-//                            RouteUtils.navTo(navCtrl, RouteName.SHARER, userId)
-                    })
+        itemsIndexed(squareData) { _, item ->
+            MultiStateItemView(
+                data = item!!,
+                onSelected = {
+                    RouteUtils.navTo(navCtrl, RouteName.WEB_VIEW, it)
+                })
         }
     }
 }
