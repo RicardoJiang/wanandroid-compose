@@ -2,6 +2,7 @@ package com.zj.wanandroid.ui.page.main.home.question
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material.Card
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
@@ -29,9 +30,11 @@ fun QuestionPage(
     scaffoldState: ScaffoldState,
     viewModel: QuestionViewModel = hiltViewModel()
 ) {
-    val questionData = viewModel.viewStates.pagingData.collectAsLazyPagingItems()
+    val viewStates = viewModel.viewStates
+    val questionData = viewStates.pagingData.collectAsLazyPagingItems()
+    val listState = if (questionData.itemCount > 0) viewStates.listState else LazyListState()
 
-    RefreshList(questionData) {
+    RefreshList(questionData,listState = listState) {
         itemsIndexed(questionData) { _, item ->
             WenDaItem(item!!) {
                 item.run {

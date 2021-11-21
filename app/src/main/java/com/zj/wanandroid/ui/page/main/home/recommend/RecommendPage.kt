@@ -2,9 +2,11 @@ package com.zj.wanandroid.ui.page.main.home.recommend
 
 import android.util.Log
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -27,11 +29,14 @@ fun RecommendPage(
     scaffoldState: ScaffoldState,
     viewModel: RecommendViewModel = hiltViewModel()
 ) {
-    val recommendData = viewModel.viewStates.pagingData.collectAsLazyPagingItems()
-    val banners = viewModel.viewStates.imageList
-    val topArticle = viewModel.viewStates.topArticles
-    val isRefreshing = viewModel.viewStates.isRefreshing
-    RefreshList(recommendData, isRefreshing = isRefreshing, onRefresh = {
+    val viewStates = viewModel.viewStates
+    val recommendData = viewStates.pagingData.collectAsLazyPagingItems()
+    val banners = viewStates.imageList
+    val topArticle = viewStates.topArticles
+    val isRefreshing = viewStates.isRefreshing
+    val listState = if (recommendData.itemCount > 0) viewStates.listState else LazyListState()
+
+    RefreshList(recommendData, listState = listState, isRefreshing = isRefreshing, onRefresh = {
         viewModel.dispatch(RecommendViewAction.Refresh)
     }) {
         if (banners.isNotEmpty()) {

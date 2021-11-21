@@ -1,5 +1,6 @@
 package com.zj.wanandroid.ui.page.main.home.question
 
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -25,5 +26,6 @@ class QuestionViewModel @Inject constructor(
 
 data class QuestionViewState(
     val isRefreshing: Boolean = false,
+    val listState: LazyListState = LazyListState(),
     val pagingData: PagingArticle
 )

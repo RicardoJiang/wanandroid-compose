@@ -1,7 +1,9 @@
 package com.zj.wanandroid.ui.page.main.home.square
 
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -17,9 +19,11 @@ fun SquarePage(
     scaffoldState: ScaffoldState,
     viewModel: SquareViewModel = hiltViewModel()
 ) {
-    val squareData = viewModel.viewStates.pagingData.collectAsLazyPagingItems()
+    val viewStates = remember { viewModel.viewStates }
+    val squareData = viewStates.pagingData.collectAsLazyPagingItems()
+    val listState = if (squareData.itemCount > 0) viewStates.listState else LazyListState()
 
-    RefreshList(squareData) {
+    RefreshList(squareData, listState = listState) {
         itemsIndexed(squareData) { _, item ->
             MultiStateItemView(
                 data = item!!,

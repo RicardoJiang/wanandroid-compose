@@ -1,10 +1,12 @@
 package com.zj.wanandroid.ui.page.main.home.recommend
 
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.zj.wanandroid.common.paging.simplePager
 import com.zj.wanandroid.data.bean.Article
 import com.zj.wanandroid.data.http.HttpService
@@ -22,7 +24,7 @@ class RecommendViewModel @Inject constructor(
     private val pager by lazy {
         simplePager {
             service.getIndexList(it)
-        }
+        }.cachedIn(viewModelScope)
     }
     var viewStates by mutableStateOf(RecommendViewState(pagingData = pager))
         private set
@@ -76,7 +78,8 @@ data class RecommendViewState(
     val pagingData: PagingArticle,
     val isRefreshing: Boolean = false,
     val imageList: List<BannerData> = emptyList(),
-    val topArticles: List<Article> = emptyList()
+    val topArticles: List<Article> = emptyList(),
+    val listState: LazyListState = LazyListState()
 )
 
 sealed class RecommendViewAction {
