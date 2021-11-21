@@ -6,8 +6,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
+import com.zj.wanandroid.ui.page.common.RouteName
 import com.zj.wanandroid.ui.widgets.MultiStateItemView
 import com.zj.wanandroid.ui.widgets.RefreshList
+import com.zj.wanandroid.utils.RouteUtils
 
 @Composable
 fun SquarePage(
@@ -22,9 +24,7 @@ fun SquarePage(
                 MultiStateItemView(
                     data = item!!,
                     onSelected = {
-//                            viewModel.saveDataToHistory(item)
-//                            viewModel.savePosition(listState.firstVisibleItemIndex)
-//                            RouteUtils.navTo(navCtrl, RouteName.WEB_VIEW, it)
+                            RouteUtils.navTo(navCtrl, RouteName.WEB_VIEW, it)
                     },
                     onCollectClick = {
 //                            if (item.collect) {

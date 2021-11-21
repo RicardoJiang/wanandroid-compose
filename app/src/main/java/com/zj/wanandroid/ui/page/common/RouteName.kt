@@ -5,4 +5,5 @@ object RouteName {
     const val CATEGORY = "category"
     const val COLLECTION = "collection"
     const val PROFILE = "profile"
+    const val WEB_VIEW = "web_view"
 }

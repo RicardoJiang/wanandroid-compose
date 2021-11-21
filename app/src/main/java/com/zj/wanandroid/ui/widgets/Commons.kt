@@ -33,7 +33,7 @@ import com.zj.wanandroid.ui.page.common.BottomNavRoute
  * 普通标题栏头部
  */
 @Composable
-fun HamToolBar(
+fun AppToolsBar(
     title: String,
     rightText: String? = null,
     onBack: (() -> Unit)? = null,

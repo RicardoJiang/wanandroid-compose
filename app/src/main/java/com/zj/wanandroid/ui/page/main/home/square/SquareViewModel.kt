@@ -36,25 +36,9 @@ class SquareViewModel @Inject constructor(
         private set
 
     fun dispatch(action: SquareViewAction) {
-        when (action) {
-            is SquareViewAction.Refresh -> refresh()
-        }
     }
 
-    private fun refresh() {
 
-    }
-
-    private fun fetchData() {
-        Log.i("tiaoshi", "fetchData")
-        viewModelScope.launch {
-            flow {
-                emit(service.getSquareData(1))
-            }.onEach {
-                Log.i("tiaoshi", "here:" + it)
-            }.collect()
-        }
-    }
 }
 
 data class SquareViewState(

@@ -8,18 +8,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.zj.wanandroid.data.bean.WebData
 import com.zj.wanandroid.ui.page.main.category.CategoryPage
 import com.zj.wanandroid.ui.page.main.collect.CollectPage
 import com.zj.wanandroid.ui.page.main.home.HomePage
 import com.zj.wanandroid.ui.page.main.profile.ProfilePage
+import com.zj.wanandroid.ui.page.webview.WebViewPage
 import com.zj.wanandroid.ui.widgets.BottomNavBarView
+import com.zj.wanandroid.utils.RouteUtils
+import com.zj.wanandroid.utils.fromJson
 
 @ExperimentalPagerApi
 @Composable
@@ -68,6 +74,16 @@ fun AppScaffold() {
                 //我的
                 composable(route = RouteName.PROFILE) {
                     ProfilePage(navCtrl, scaffoldState)
+                }
+
+                //WebView
+                composable(route = RouteName.WEB_VIEW + "/{webData}",
+                    arguments = listOf(navArgument("webData") { type = NavType.StringType })
+                ) {
+                    val args = it.arguments?.getString("webData")?.fromJson<WebData>()
+                    if (args != null) {
+                        WebViewPage(webData = args, navCtrl = navCtrl)
+                    }
                 }
             }
         }
