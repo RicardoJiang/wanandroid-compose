@@ -1,9 +1,13 @@
 package com.zj.wanandroid.ui.page.main.home
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -46,7 +50,11 @@ fun HomePage(
             }
         )
 
-        HorizontalPager(count = titles.size,state = pagerState) { page ->
+        HorizontalPager(
+            count = titles.size,
+            state = pagerState,
+            modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 50.dp)
+        ) { page ->
             when (page) {
                 0 -> SquarePage(navCtrl, scaffoldState)
                 1 -> RecommendPage(navCtrl, scaffoldState)

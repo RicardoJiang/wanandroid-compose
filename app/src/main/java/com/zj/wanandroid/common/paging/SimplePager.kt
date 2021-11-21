@@ -13,7 +13,7 @@ fun <T : Any> ViewModel.simplePager(
     callAction: suspend (page: Int) -> BasicBean<ListWrapper<T>>
 ): Flow<PagingData<T>> {
     return pager(config, 0) {
-        val page = it.key ?: 0
+        val page = it.key ?: 1
         val response = try {
             HttpResult.Success(callAction.invoke(page))
         } catch (e: Exception) {
