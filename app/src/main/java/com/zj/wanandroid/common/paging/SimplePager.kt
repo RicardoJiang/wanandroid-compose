@@ -3,9 +3,12 @@ package com.zj.wanandroid.common.paging
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
+import com.zj.wanandroid.MyApp
 import com.zj.wanandroid.data.bean.BasicBean
 import com.zj.wanandroid.data.bean.ListWrapper
 import com.zj.wanandroid.data.http.HttpResult
+import com.zj.wanandroid.utils.NetCheckUtil
+import com.zj.wanandroid.utils.showToast
 import kotlinx.coroutines.flow.Flow
 
 fun <T : Any> ViewModel.simplePager(
@@ -13,10 +16,15 @@ fun <T : Any> ViewModel.simplePager(
     callAction: suspend (page: Int) -> BasicBean<ListWrapper<T>>
 ): Flow<PagingData<T>> {
     return pager(config, 0) {
-        val page = it.key ?: 1
+        val page = it.key ?: 0
         val response = try {
             HttpResult.Success(callAction.invoke(page))
         } catch (e: Exception) {
+            if (NetCheckUtil.checkNet(MyApp.CONTEXT).not()) {
+                showToast("没有网络,请重试")
+            } else {
+                showToast("请求失败，请重试")
+            }
             HttpResult.Error(e)
         }
         when (response) {

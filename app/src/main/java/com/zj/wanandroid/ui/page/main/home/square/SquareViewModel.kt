@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import java.lang.NullPointerException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,7 +25,7 @@ class SquareViewModel @Inject constructor(
 ) : ViewModel() {
     private val pager by lazy {
         simplePager {
-            if (it>3){
+            if (it >= 3) {
                 throw NullPointerException("")
             }
             delay(2000)
