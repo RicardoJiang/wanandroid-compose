@@ -34,7 +34,7 @@ class LoginViewModel @Inject constructor(
     private fun login() {
         viewModelScope.launch {
             flow {
-                emit(service.login(viewStates.account, viewStates.password))
+                emit(service.login(viewStates.account.trim(), viewStates.password.trim()))
             }.map {
                 if (it.errorCode == 0) {
                     if (it.data != null) {
@@ -55,23 +55,23 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun clearAccount() {
-
+        viewStates = viewStates.copy(account = "")
     }
 
     private fun clearPassword() {
-
+        viewStates = viewStates.copy(password = "")
     }
 
     private fun clearErrorMessage() {
-
+        viewStates = viewStates.copy(errorMessage = null)
     }
 
     private fun updateAccount(account: String) {
-
+        viewStates = viewStates.copy(account = account)
     }
 
     private fun updatePassword(password: String) {
-
+        viewStates = viewStates.copy(password = password)
     }
 
 }
