@@ -1,5 +1,6 @@
 package com.zj.wanandroid.ui.page.main.collect
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -9,6 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -25,7 +27,12 @@ fun CollectPage(
     viewModel: CollectViewModel = hiltViewModel()
 ) {
     val viewStates = viewModel.viewStates
-
+    DisposableEffect(Unit) {
+        Log.i("debug","onStart")
+        viewModel.dispatch(CollectViewAction.OnStart)
+        onDispose {
+        }
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()

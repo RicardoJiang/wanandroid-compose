@@ -12,7 +12,7 @@ object AppUserUtil {
 
     var userInfo: UserInfo?
         get() = DataStoreUtils.readStringData(USER_INFO).fromJson()
-        set(value) = DataStoreUtils.saveSyncStringData(LOGGED_FLAG, value = value?.toJson() ?: "")
+        set(value) = DataStoreUtils.saveSyncStringData(USER_INFO, value = value?.toJson() ?: "")
 
     fun onLogin(userInfo: UserInfo) {
         isLogged = true

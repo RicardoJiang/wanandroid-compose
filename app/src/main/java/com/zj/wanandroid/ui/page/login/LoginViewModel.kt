@@ -9,6 +9,7 @@ import com.zj.wanandroid.data.http.HttpResult
 import com.zj.wanandroid.data.http.HttpService
 import com.zj.wanandroid.utils.AppUserUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,13 +20,14 @@ class LoginViewModel @Inject constructor(
 ) : ViewModel() {
     var viewStates by mutableStateOf(LoginViewState())
         private set
+    private val _viewEvents = Channel<LoginViewEvent>(Channel.BUFFERED)
+    val viewEvents = _viewEvents.receiveAsFlow()
 
     fun dispatch(action: LoginViewAction) {
         when (action) {
             is LoginViewAction.Login -> login()
             is LoginViewAction.ClearAccount -> clearAccount()
             is LoginViewAction.ClearPassword -> clearPassword()
-            is LoginViewAction.ClearErrorMessage -> clearErrorMessage()
             is LoginViewAction.UpdateAccount -> updateAccount(action.account)
             is LoginViewAction.UpdatePassword -> updatePassword(action.password)
         }
@@ -47,9 +49,9 @@ class LoginViewModel @Inject constructor(
                 }
             }.onEach {
                 AppUserUtil.onLogin(it.result)
-                viewStates = viewStates.copy(isLogged = true)
+                _viewEvents.send(LoginViewEvent.PopBack)
             }.catch {
-                viewStates = viewStates.copy(errorMessage = it.message)
+                _viewEvents.send(LoginViewEvent.ErrorMessage(it.message ?: ""))
             }.collect()
         }
     }
@@ -60,10 +62,6 @@ class LoginViewModel @Inject constructor(
 
     private fun clearPassword() {
         viewStates = viewStates.copy(password = "")
-    }
-
-    private fun clearErrorMessage() {
-        viewStates = viewStates.copy(errorMessage = null)
     }
 
     private fun updateAccount(account: String) {
@@ -83,11 +81,18 @@ data class LoginViewState(
     val errorMessage: String? = null
 )
 
+/**
+ * 一次性事件
+ */
+sealed class LoginViewEvent {
+    object PopBack : LoginViewEvent()
+    data class ErrorMessage(val message: String) : LoginViewEvent()
+}
+
 sealed class LoginViewAction {
     object Login : LoginViewAction()
     object ClearAccount : LoginViewAction()
     object ClearPassword : LoginViewAction()
-    object ClearErrorMessage : LoginViewAction()
     data class UpdateAccount(val account: String) : LoginViewAction()
     data class UpdatePassword(val password: String) : LoginViewAction()
 }

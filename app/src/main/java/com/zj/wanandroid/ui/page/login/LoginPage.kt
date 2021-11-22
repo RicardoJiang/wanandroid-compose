@@ -1,5 +1,6 @@
 package com.zj.wanandroid.ui.page.login
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -10,6 +11,7 @@ import androidx.compose.material.ScaffoldState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -23,6 +25,7 @@ import com.zj.wanandroid.theme.AppTheme
 import com.zj.wanandroid.theme.ToolBarHeight
 import com.zj.wanandroid.ui.widgets.*
 import com.zj.wanandroid.utils.RouteUtils.back
+import kotlinx.coroutines.flow.collect
 
 @ExperimentalComposeUiApi
 @Composable
@@ -35,14 +38,14 @@ fun LoginPage(
     val keyboardController = LocalSoftwareKeyboardController.current
     val coroutineState = rememberCoroutineScope()
 
-    if (viewStates.isLogged) {
-        navCtrl.popBackStack()
-    }
-
-    //SnackBar弹窗显示信息
-    if (viewStates.errorMessage != null) {
-        popupSnackBar(coroutineState, scaffoldState, label = SNACK_ERROR, viewStates.errorMessage!!)
-        viewModel.dispatch(LoginViewAction.ClearErrorMessage)
+    LaunchedEffect(Unit) {
+        viewModel.viewEvents.collect {
+            if (it is LoginViewEvent.PopBack) {
+                navCtrl.popBackStack()
+            } else if (it is LoginViewEvent.ErrorMessage) {
+                popupSnackBar(coroutineState, scaffoldState, label = SNACK_ERROR, it.message)
+            }
+        }
     }
 
     LazyColumn(
@@ -72,16 +75,6 @@ fun LoginPage(
                         .padding(start = 20.dp)
                         .align(Alignment.CenterStart)
                         .clickable { navCtrl.back() }
-                )
-                TextContent(
-                    text = "用户注册",
-                    modifier = Modifier
-                        .padding(end = 20.dp)
-                        .align(Alignment.CenterEnd)
-                        .clickable {
-
-                        },
-                    color = AppTheme.colors.mainColor
                 )
             }
         }
@@ -122,7 +115,6 @@ fun LoginPage(
                 modifier = Modifier.padding(horizontal = 20.dp)
             ) {
                 keyboardController?.hide()
-                viewModel.dispatch(LoginViewAction.ClearErrorMessage)
                 viewModel.dispatch(LoginViewAction.Login)
             }
         }

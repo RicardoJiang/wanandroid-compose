@@ -37,6 +37,7 @@ class CollectViewModel @Inject constructor(
     }
 
     private fun onStart() {
+        viewStates = viewStates.copy(isLogged = AppUserUtil.isLogged)
         if (viewStates.isLogged && viewStates.isInit.not()) {
             viewStates = viewStates.copy(isInit = true)
             initData()
@@ -74,10 +75,9 @@ data class CollectViewState(
     val isInit: Boolean = false,
     val isRefreshing: Boolean = false,
     val urlList: List<ParentBean> = emptyList(),
-    val pagingData: PagingCollect? = null
-) {
+    val pagingData: PagingCollect? = null,
     val isLogged: Boolean = AppUserUtil.isLogged
-}
+)
 
 sealed class CollectViewAction {
     object OnStart : CollectViewAction()

@@ -15,7 +15,7 @@ const val SNACK_ERROR = "  "
 const val SNACK_SUCCESS = "OK"
 
 @Composable
-fun HamSnackBar(data: SnackbarData) {
+fun AppSnackBar(data: SnackbarData) {
     Snackbar(
         snackbarData = data,
         backgroundColor = when (data.actionLabel) {

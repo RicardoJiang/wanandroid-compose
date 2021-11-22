@@ -4,6 +4,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.SnackbarHost
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,6 +27,7 @@ import com.zj.wanandroid.ui.page.main.collect.CollectPage
 import com.zj.wanandroid.ui.page.main.home.HomePage
 import com.zj.wanandroid.ui.page.main.profile.ProfilePage
 import com.zj.wanandroid.ui.page.webview.WebViewPage
+import com.zj.wanandroid.ui.widgets.AppSnackBar
 import com.zj.wanandroid.ui.widgets.BottomNavBarView
 import com.zj.wanandroid.utils.RouteUtils
 import com.zj.wanandroid.utils.fromJson
@@ -95,6 +97,14 @@ fun AppScaffold() {
                 composable(route = RouteName.LOGIN) {
                     LoginPage(navCtrl, scaffoldState)
                 }
+            }
+        },
+        snackbarHost = {
+            SnackbarHost(
+                hostState = scaffoldState.snackbarHostState
+            ) { data ->
+                println("actionLabel = ${data.actionLabel}")
+                AppSnackBar(data = data)
             }
         }
     )
