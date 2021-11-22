@@ -26,6 +26,7 @@ import com.zj.wanandroid.ui.page.main.category.CategoryPage
 import com.zj.wanandroid.ui.page.main.collect.CollectPage
 import com.zj.wanandroid.ui.page.main.home.HomePage
 import com.zj.wanandroid.ui.page.main.profile.ProfilePage
+import com.zj.wanandroid.ui.page.search.SearchPage
 import com.zj.wanandroid.ui.page.webview.WebViewPage
 import com.zj.wanandroid.ui.widgets.AppSnackBar
 import com.zj.wanandroid.ui.widgets.BottomNavBarView
@@ -96,6 +97,14 @@ fun AppScaffold() {
                 //登录
                 composable(route = RouteName.LOGIN) {
                     LoginPage(navCtrl, scaffoldState)
+                }
+
+                //文章搜索页
+                composable(
+                    route = RouteName.ARTICLE_SEARCH + "/{id}",
+                    arguments = listOf(navArgument("id") { type = NavType.IntType })
+                ) {
+                    SearchPage(navCtrl, scaffoldState)
                 }
             }
         },

@@ -1,7 +1,6 @@
 package com.zj.wanandroid.ui.page.main.home
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
@@ -13,11 +12,13 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
+import com.zj.wanandroid.ui.page.common.RouteName
 import com.zj.wanandroid.ui.page.main.home.question.QuestionPage
 import com.zj.wanandroid.ui.page.main.home.recommend.RecommendPage
 import com.zj.wanandroid.ui.page.main.home.square.SquarePage
 import com.zj.wanandroid.ui.widgets.HomeSearchBar
 import com.zj.wanandroid.ui.widgets.TextTabBar
+import com.zj.wanandroid.utils.RouteUtils
 import kotlinx.coroutines.launch
 
 @ExperimentalPagerApi
@@ -46,7 +47,7 @@ fun HomePage(
 
         HomeSearchBar(
             onSearchClick = {
-                //RouteUtils.navTo(navCtrl, RouteName.ARTICLE_SEARCH + "/111")
+                RouteUtils.navTo(navCtrl, RouteName.ARTICLE_SEARCH + "/111")
             }
         )
 
