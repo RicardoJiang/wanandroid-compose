@@ -8,6 +8,7 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -19,6 +20,7 @@ import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.zj.wanandroid.data.bean.WebData
+import com.zj.wanandroid.ui.page.login.LoginPage
 import com.zj.wanandroid.ui.page.main.category.CategoryPage
 import com.zj.wanandroid.ui.page.main.collect.CollectPage
 import com.zj.wanandroid.ui.page.main.home.HomePage
@@ -28,6 +30,7 @@ import com.zj.wanandroid.ui.widgets.BottomNavBarView
 import com.zj.wanandroid.utils.RouteUtils
 import com.zj.wanandroid.utils.fromJson
 
+@ExperimentalComposeUiApi
 @ExperimentalFoundationApi
 @ExperimentalPagerApi
 @Composable
@@ -86,6 +89,11 @@ fun AppScaffold() {
                     if (args != null) {
                         WebViewPage(webData = args, navCtrl = navCtrl)
                     }
+                }
+
+                //登录
+                composable(route = RouteName.LOGIN) {
+                    LoginPage(navCtrl, scaffoldState)
                 }
             }
         }
