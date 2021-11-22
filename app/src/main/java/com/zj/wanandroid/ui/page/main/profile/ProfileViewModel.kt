@@ -17,7 +17,23 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
     fun dispatch(action: ProfileViewAction) {
         when (action) {
             is ProfileViewAction.OnStart -> onStart()
+            is ProfileViewAction.ShowLogoutDialog -> showLogout()
+            is ProfileViewAction.DismissLogoutDialog -> dismissLogout()
+            is ProfileViewAction.Logout -> logout()
         }
+    }
+
+    private fun logout() {
+        AppUserUtil.onLogOut()
+        viewStates = viewStates.copy(isLogged = false, showLogout = false, userInfo = null)
+    }
+
+    private fun dismissLogout() {
+        viewStates = viewStates.copy(showLogout = false)
+    }
+
+    private fun showLogout() {
+        viewStates = viewStates.copy(showLogout = true)
     }
 
     private fun onStart() {
@@ -28,9 +44,13 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
 
 data class ProfileViewState(
     val isLogged: Boolean = AppUserUtil.isLogged,
-    val userInfo: UserInfo? = AppUserUtil.userInfo
+    val userInfo: UserInfo? = AppUserUtil.userInfo,
+    val showLogout: Boolean = false
 )
 
 sealed class ProfileViewAction {
     object OnStart : ProfileViewAction()
+    object ShowLogoutDialog : ProfileViewAction()
+    object DismissLogoutDialog : ProfileViewAction()
+    object Logout : ProfileViewAction()
 }

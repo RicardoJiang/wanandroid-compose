@@ -57,6 +57,19 @@ fun ProfilePage(
         }
     }
 
+    if (viewStates.showLogout) {
+        SampleAlertDialog(
+            title = "提示",
+            content = "退出后，将无法查看我的文章、消息、收藏、积分、浏览记录等功能，确定退出登录吗？",
+            onConfirmClick = {
+                viewModel.dispatch(ProfileViewAction.Logout)
+            },
+            onDismiss = {
+                viewModel.dispatch(ProfileViewAction.DismissLogoutDialog)
+            }
+        )
+    }
+
     Column(
         modifier = Modifier
             .padding(bottom = BottomNavBarHeight)
@@ -76,8 +89,8 @@ fun ProfilePage(
                     FooterPart(
                         navCtrl = navCtrl,
                         messageCount = 0,
-                        onJoinUsClick = {
-
+                        onLogout = {
+                            viewModel.dispatch(ProfileViewAction.ShowLogoutDialog)
                         })
                 }
             }
@@ -98,7 +111,7 @@ fun ProfilePage(
 fun FooterPart(
     navCtrl: NavHostController,
     messageCount: Int,
-    onJoinUsClick: () -> Unit,
+    onLogout: () -> Unit,
 ) {
 
     Column(
@@ -138,10 +151,10 @@ fun FooterPart(
             )
         }
         ArrowRightListItem(
-            iconRes = painterResource(R.drawable.ic_community),
-            title = "加入我们"
+            iconRes = painterResource(R.drawable.ic_message),
+            title = "退出登录"
         ) {
-            onJoinUsClick.invoke()
+            onLogout.invoke()
         }
     }
 }
