@@ -1,5 +1,6 @@
 package com.zj.wanandroid.ui.page.main.collect
 
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -11,6 +12,7 @@ import com.zj.wanandroid.common.paging.simplePager
 import com.zj.wanandroid.data.bean.CollectBean
 import com.zj.wanandroid.data.bean.ParentBean
 import com.zj.wanandroid.data.http.HttpService
+import com.zj.wanandroid.ui.widgets.TabTitle
 import com.zj.wanandroid.utils.AppUserUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -74,9 +76,14 @@ class CollectViewModel @Inject constructor(
 data class CollectViewState(
     val isInit: Boolean = false,
     val isRefreshing: Boolean = false,
+    val listState: LazyListState = LazyListState(),
     val urlList: List<ParentBean> = emptyList(),
     val pagingData: PagingCollect? = null,
-    val isLogged: Boolean = AppUserUtil.isLogged
+    val isLogged: Boolean = AppUserUtil.isLogged,
+    val titles: List<TabTitle> = listOf(
+        TabTitle(301, "文章列表"),
+        TabTitle(302, "我的网址"),
+    )
 )
 
 sealed class CollectViewAction {
