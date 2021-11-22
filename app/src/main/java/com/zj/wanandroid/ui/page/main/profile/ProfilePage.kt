@@ -128,7 +128,7 @@ fun FooterPart(
             iconRes = painterResource(R.drawable.ic_menu_settings),
             title = "设置"
         ) {
-            //TODO
+            onLogout.invoke()
         }
         ArrowRightListItem(
             iconRes = painterResource(R.drawable.ic_feedback),
