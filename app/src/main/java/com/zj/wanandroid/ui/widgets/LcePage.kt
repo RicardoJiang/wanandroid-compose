@@ -47,8 +47,8 @@ fun PageLoading() {
                 color = AppTheme.colors.themeUi,
                 modifier = Modifier
                     .padding(10.dp)
-                    .width(60.dp)
-                    .height(60.dp)
+                    .width(50.dp)
+                    .height(50.dp)
             )
             Text(
                 text = "正在加载中",
