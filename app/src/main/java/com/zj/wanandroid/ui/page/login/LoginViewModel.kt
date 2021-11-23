@@ -77,8 +77,7 @@ class LoginViewModel @Inject constructor(
 data class LoginViewState(
     val account: String = "",
     val password: String = "",
-    val isLogged: Boolean = false,
-    val errorMessage: String? = null
+    val isLogged: Boolean = false
 )
 
 /**
