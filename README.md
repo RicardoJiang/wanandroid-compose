@@ -1,8 +1,6 @@
 ## 前言
-今年七月底，`Google` 正式发布了 `Jetpack Compose` 的 `1.0` 稳定版本，这说明`Google`认为`Compose`已经可以用于生产环境了            
-相信`Compose`的广泛应用就在不远的将来，现在应该是学习`Compose`的一个比较好的时机    
-在了解了`Compose`的基本知识与原理之后，通过一个完整的项目继续学习`Compose`应该是一个比较好的方式      
-本文主要基于`Compose`,`MVI`架构,单`Activity`架构等，快速实现一个`wanAndroid`客户端,如果对您有所帮助可以点个`Star`: [wanAndroid-compose](https://github.com/shenzhen2017/wanandroid-compose)
+今年七月底，`Google` 正式发布了 `Jetpack Compose` 的 `1.0` 稳定版本，这说明`Google`认为`Compose`已经可以用于生产环境了。相信`Compose`的广泛应用就在不远的将来，现在应该是学习`Compose`的一个比较好的时机    
+在了解了`Compose`的基本知识与原理之后，通过一个完整的项目继续学习`Compose`应该是一个比较好的方式。本文主要基于`Compose`,`MVI`架构,单`Activity`架构等，快速实现一个`wanAndroid`客户端,如果对您有所帮助可以点个`Star`: [wanAndroid-compose](https://github.com/shenzhen2017/wanandroid-compose)
 
 ## 效果图
 首先看下效果图
@@ -117,7 +115,7 @@ fun LoginPage(
 
 了解了`Compose`的生命周期后，我们可以发现，如果我们在`onActive`时监听`Activity`的生命周期，在`onDispose`时取消监听，不就可以实现在`Compose`中获取生命周期了吗?     
 `DisposableEffect`可以帮助我们实现这个需求，`DisposableEffect`在其监听的`Key`发生变化，或`onDispose`时会执行    
-我们还可以通过添加参数，让其仅在`onActive`与`onDispose`时执行：`DisposableEffect(true)`或`DisposableEffect(Unit)`
+我们还可以通过添加参数，让其仅在`onActive`与`onDispose`时执行：例如`DisposableEffect(true)`或`DisposableEffect(Unit)`
 
 通过以下方式，就可以实现在`Compose`中监听页面生命周期
 ```kotlin
@@ -203,7 +201,7 @@ fun SquarePage(
 }
 ```
 需要注意的是，针对一般的页面，直接使用`viewModel.listState`即可，不过我在使用`Paing`时发现返回页面时`Paging`的`itemCount`会暂时变为0，导致`listState`也变为0，所以需要做一些特殊处理      
-关于`LazyColumn`滚动丢失的问题，更详细的讨论可参考：[Scroll position of LazyColumn built with `collectAsLazyPagingItems` is lost when using Navigation
+关于`LazyColumn`滚动丢失的问题，更详细的讨论可参考：[Scroll position of LazyColumn built with collectAsLazyPagingItems is lost when using Navigation
 ](https://issuetracker.google.com/issues/177245496?pli=1)
 
 ## 总结
